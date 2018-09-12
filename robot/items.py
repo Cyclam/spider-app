@@ -18,3 +18,7 @@ class DoubanMoveItem(scrapy.Item):
     score = scrapy.Field()
     # 评论人数
     score_num = scrapy.Field()
+
+class DoubanImageItem(scrapy.Item):
+    # 封面图片
+    image_urls = scrapy.Field()

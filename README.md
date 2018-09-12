@@ -38,6 +38,9 @@ scrapy genspider example example.com
 - start_urls: 包含了Spider在启动时进行爬取的url列表。 因此，第一个被获取到的页面将是其中之一。 后续的URL则从初始的URL获取到的数据中提取。
 - parse() 是spider的一个方法。 被调用时，每个初始URL完成下载后生成的 Response 对象将会作为唯一的参数传递给该函数。 该方法负责解析返回的数据(response data)，提取数据(生成item)以及生成需要进一步处理的URL的 Request 对象。
 
+### 新建爬虫
+`scrapy genspider mydomain mydomain.com`
+
 ### Scapy 选择器
 Scrapy使用css和xpath选择器来定位元素，它有四个基本方法：
 
@@ -49,4 +52,4 @@ Scrapy使用css和xpath选择器来定位元素，它有四个基本方法：
 如果只想提取第一个匹配的元素，可以调用选择器 .extract_first()
 
 ### 开启爬虫
-`scrapy crawl douban -o douban.csv`
+`scrapy crawl douban -o douban.json`

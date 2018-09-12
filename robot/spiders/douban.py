@@ -16,10 +16,14 @@ class DoubanSpider(Spider):
     allowed_domains = ['douban.com']
     start_urls = 'https://movie.douban.com/top250'
 
+    # 该方法必须返回一个可迭代对象(iterable)。该对象包含了spider用于爬取的第一个Request。
+    # 当spider启动爬取并且未制定URL时，该方法被调用。 当指定了URL时，make_requests_from_url() 将被调用来创建Request对象。 该方法仅仅会被Scrapy调用一次，因此您可以将其实现为生成器。
+    # 该方法的默认实现是使用 start_urls 的url生成Request。
     def start_requests(self):
         url = self.start_urls
         yield Request(url, headers=self.headers)
 
+    # 该方法及其他的Request回调函数必须返回一个包含 Request、dict 或 Item 的可迭代的对象。
     def parse(self, response):
         item = DoubanMoveItem()
         movies = response.xpath('//ol[@class="grid_view"]/li')
@@ -31,7 +35,7 @@ class DoubanSpider(Spider):
             item['score_num'] = movie.xpath('.//div[@class="star"]/span/text()').re(r'(\d+)人评价')[0]
             yield item
 
-        # next_url = response.xpath('//span[@class="next"]/a/@href').extract()
+        # next_url = response.xpath('//span[@class="next"]/a/@href').extract() # <class 'list'>
         # if next_url:
         #     next_url = self.start_urls + next_url[0]
         #     yield Request(next_url, headers=self.headers)
