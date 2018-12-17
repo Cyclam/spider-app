@@ -35,7 +35,14 @@ class DoubanSpider(Spider):
             item['score_num'] = movie.xpath('.//div[@class="star"]/span/text()').re(r'(\d+)人评价')[0]
             yield item
 
-        # next_url = response.xpath('//span[@class="next"]/a/@href').extract() # <class 'list'>
-        # if next_url:
-        #     next_url = self.start_urls + next_url[0]
-        #     yield Request(next_url, headers=self.headers)
+        next_url = response.xpath('//span[@class="next"]/a/@href').extract() # <class 'list'>
+        if next_url:
+            next_url = self.start_urls + next_url[0]
+            yield Request(next_url, headers=self.headers, callback=self.parse_done)
+    
+    def parse_done(self, response):
+        print('===========================================')
+        print(response)
+        print('It is done.')
+        item = DoubanMoveItem()
+        yield item

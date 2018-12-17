@@ -14,15 +14,12 @@ BOT_NAME = 'robot'
 SPIDER_MODULES = ['robot.spiders']
 NEWSPIDER_MODULE = 'robot.spiders'
 FEED_EXPORT_ENCODING = 'utf-8'
-
 # ITEM_PIPELINES = {
-#   'robot.pipelines.DoubanImgDownloadPipeline': 300,
+#   # 'robot.pipelines.RobotPipeline': 300,
+#   'scrapy.pipelines.images.ImagesPipeline': 1,
+#   'robot.pipelines.DoubanImgDownloadPipeline': 300
 # }
-
-ITEM_PIPELINES = {
-  'robot.pipelines.DoubanImgDownloadPipeline': 300
-}
-IMAGES_STORE = '../robot/images'
+IMAGES_STORE = './images'
 # IMAGES_EXPIRES = 90
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
