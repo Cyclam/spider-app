@@ -13,6 +13,7 @@ pyenv shell 3.5.4设置版本
 
 [使用 pyenv 管理 Python 版本](http://einverne.github.io/post/2017/04/pyenv.html)
 ```
+安装pyenv如有问题查看[Wiki](https://github.com/pyenv/pyenv/wiki)
 
 ### 安装 Scrapy
 1. `sudo pip install scrapy --upgrade --ignore-installed six`
